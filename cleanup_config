@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "📦 Cleaning up configuration files ..."
+rm -rf ~/.config/zellij
+
+ZELLIJ_BACKUP=~/.config/zellij_backup
+
+if [ -d "$ZELLIJ_BACKUP" ]; then
+    echo "📦 Restoring previous configuration ..."
+    mv ~/.config/zellij_backup ~/.config/zellij
+fi

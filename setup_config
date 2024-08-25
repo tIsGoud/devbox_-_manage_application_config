@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ZELLIJ_CONFIG=~/.config/zellij/config.kdl
+
+if [ -f "$ZELLIJ_CONFIG" ]; then
+    echo "📦 Renaming existing configuration ..."
+    mv ~/.config/zellij ~/.config/zellij_backup
+fi
+
+echo "📦 Setup configuration ..."
+cp -r ./zellij ~/.config/
+
