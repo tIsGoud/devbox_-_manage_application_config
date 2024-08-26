@@ -1,3 +1,4 @@
+[![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
 # Devbox - manage application config
 
 _Note_: This repo is only for testing [Devbox](https://www.jetify.com/devbox/docs/) with application configuration files that need to be placed in the root of the user. [zellij](https://zellij.dev/) was used as sample application, the configuration of zellij is just an example.
