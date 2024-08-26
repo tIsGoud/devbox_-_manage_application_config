@@ -8,11 +8,6 @@
     "init_hook": [
       "./setup_config",
       "trap $PROJECT_DIR/cleanup_config EXIT"
-    ],
-    "scripts": {
-      "test": [
-        "echo \"Error: no test specified\" && exit 1"
-      ]
-    }
+    ]
   }
 }
