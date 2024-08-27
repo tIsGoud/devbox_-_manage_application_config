@@ -1,3 +1,7 @@
-default_shell "zsh"
+default_shell "bash"
 
-theme "Tokyo Night"
+// pane_frames false
+// default_layout "layout"
+
+// on_force_close "quit"
+theme "Gruvbox Dark"

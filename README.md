@@ -25,6 +25,53 @@ The alternative setup would be to use the existing application configuration.
 
 This setup would allow users, who are already using the application, to use their own configuration.
 
-## Bugfix
+## Bugfixes
 
-_File not found_: Changing directories caused a "file not found" error in the initial version. This was fixed with the "PROJECT_DIR" environment variable.
+### File not found
+
+Changing directories caused a "file not found" error in the initial version. This was fixed with the "PROJECT_DIR" environment variable.
+
+### zellij runs devbox `init_hook`
+
+Maybe a bug, maybe not. When the `init_hook` is used in Devbox(.json) zellij calls the `init_hook` commands.
+
+By default I'm running `zsh` on my Mac. Zellij, unless configured, runs the same shell as the host therefore also `zsh`. Same result when configuring the shell to `zsh` in zellij's `config.kdl`.
+
+Starting Devbox from `zsh` and processing the `init_hook`
+![devbox shell](img/1.png)
+
+Starting `zellij` with `zsh` and processing the `init_hook`
+![devbox shell](img/2.png)
+
+Starting `zellij` with `bash` and not processing the `init_hook`
+![devbox shell](img/3.png)
+
+**Workaround A:**
+
+Configure the default zellij shell to `bash`.
+
+**Workaround B:**
+
+Use the solution provided in the alternative `devbox_workaround.json` file. This can be used in two ways, starting `devbox shell` and call `zellij` from the command line. This method uses the default configuration from the Devbox environment.
+The second way is to run the `zconf` script, `devbox run zconf`. This method copies the configuration to the users HOME directory and runs `zellij` directly.
+
+```json
+{
+  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.12.0/.schema/devbox.schema.json",
+  "packages": ["zellij@latest"],
+  "env": {
+    "PROJECT_DIR": "$PWD",
+    "ZELLIJ_CONFIG_DIR": "$PWD/zellij"
+  },
+  "shell": {
+    "scripts": {
+      "zconf": [
+        "unset ZELLIJ_CONFIG_DIR",
+        "./setup_config",
+        "zellij",
+        "trap $PROJECT_DIR/cleanup_config EXIT"
+      ]
+    }
+  }
+}
+```
